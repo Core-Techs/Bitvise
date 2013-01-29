@@ -9,6 +9,9 @@ namespace CoreTechs.Bitvise
 {
     public static class Extensions
     {
+        /// <summary>
+        /// Like the QueryValue method, but with string format arguments.
+        /// </summary>
         [StringFormatMethod("query")]
         public static string Query([NotNull] this BssCfg554 server, [NotNull] string query, params object[] args)
         {
@@ -18,6 +21,9 @@ namespace CoreTechs.Bitvise
             return server.QueryValue(string.Format(query, args), 0);
         }
 
+        /// <summary>
+        /// Like the ProcessInstruction method, but with string format arguments.
+        /// </summary>
         [StringFormatMethod("command")]
         public static void Command([NotNull] this BssCfg554 server, [NotNull] string command, params object[] args)
         {
@@ -27,6 +33,9 @@ namespace CoreTechs.Bitvise
             server.ProcessInstruction(string.Format(command, args));
         }
 
+        /// <summary>
+        /// Adds retry/timeout ability to the LockServerSettings method.
+        /// </summary>
         public static void LockServerSettings([NotNull] this BssCfg554 server, TimeSpan? timeout)
         {
             if (server == null) throw new ArgumentNullException("server");

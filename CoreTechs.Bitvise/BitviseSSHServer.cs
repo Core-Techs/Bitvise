@@ -38,7 +38,7 @@ namespace CoreTechs.Bitvise
             {
                 _server.LoadServerSettings();
 
-                // check for existing usern
+                // check for existing user
                 var query = string.Format(@"virtAccount eqi ""{0}""", username);
                 var exists = int.Parse(_server.Query("access.virtAccounts.Count({0})", query)) > 0;
                 var virtAccount = exists
