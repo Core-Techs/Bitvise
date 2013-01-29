@@ -9,6 +9,7 @@ namespace CoreTechs.Bitvise
     public class BitviseSSHServer
     {
         private readonly BssCfg554 _server = new BssCfg554();
+        public TimeSpan? SettingsLockTimeout { get; set; }
 
         public IEnumerable<string> GetVirtAccountIds(string query = null)
         {
@@ -44,7 +45,7 @@ namespace CoreTechs.Bitvise
                                       ? GetVirtAccounts(query).SingleOrDefault()
                                       : new VirtAccount("access.virtAccounts.New", "", "");
 
-                _server.LockServerSettings();
+                _server.LockServerSettings(SettingsLockTimeout);
 
                 if (!exists)
                     _server.Command(@"access.virtAccounts.NewClear");
