@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using BssCfg554Lib;
 using JetBrains.Annotations;
 
@@ -9,7 +11,14 @@ namespace CoreTechs.Bitvise
     public class BitviseSSHServer
     {
         private readonly BssCfg554 _server = new BssCfg554();
+
         public TimeSpan? SettingsLockTimeout { get; set; }
+
+        public BitviseSSHServer(string site = null)
+        {
+            if (site != null)
+                _server.SetSite(site);
+        }
 
         public IEnumerable<string> GetVirtAccountIds(string query = null)
         {
@@ -28,14 +37,14 @@ namespace CoreTechs.Bitvise
                    select new VirtAccount(id, accountData, keyData);
         }
 
-        public VirtAccount CreateOrUpdateVirtAccount([NotNull] string username,
-                                                     string password = null, string group = null,
-                                                     IEnumerable<string> keys = null)
+        public VirtAccount CreateOrUpdateVirtAccount([NotNull] string username, string password = null,
+                                                     string group = null)
         {
             if (username == null) throw new ArgumentNullException("username");
 
             try
             {
+                _server.LockServerSettings(SettingsLockTimeout);
                 _server.LoadServerSettings();
 
                 // check for existing user
@@ -44,8 +53,6 @@ namespace CoreTechs.Bitvise
                 var virtAccount = exists
                                       ? GetVirtAccounts(query).SingleOrDefault()
                                       : new VirtAccount("access.virtAccounts.New", "", "");
-
-                _server.LockServerSettings(SettingsLockTimeout);
 
                 if (!exists)
                     _server.Command(@"access.virtAccounts.NewClear");
@@ -58,10 +65,6 @@ namespace CoreTechs.Bitvise
                 if (!string.IsNullOrWhiteSpace(group))
                     _server.Command(@"{0}.group ""{1}""", virtAccount.Id, group);
 
-                if (keys != null)
-                    foreach (var key in keys)
-                        _server.Command(@"{0}.keys.Add ""{1}""", virtAccount.Id, key);
-
                 if (!exists)
                     _server.Command("access.virtAccounts.NewCommit");
 
@@ -69,6 +72,47 @@ namespace CoreTechs.Bitvise
 
                 virtAccount = GetVirtAccounts(query).Single();
                 return virtAccount;
+            }
+            catch (COMException ex)
+            {
+                throw new BitviseSSHServerException(ex);
+            }
+            finally
+            {
+                _server.UnlockServerSettings();
+            }
+        }
+
+        public void ImportVirtAccountPublicKey(string username, FileInfo keyFile)
+        {
+            var keyFilePath = keyFile.FullName.Replace(@"\", @"\\");
+
+            try
+            {
+                _server.LockServerSettings(SettingsLockTimeout);
+                _server.LoadServerSettings();
+                try
+                {
+                    _server.Command(@"access.virtAccounts.(virtAccount eqi ""{0}"").keys.Import ""{1}""", username,
+                                    keyFilePath);
+                }
+                catch (COMException ex)
+                {
+                    var message = ex.Message.ToLower();
+
+                    if (message.Contains("public key is already in the list"))
+                        throw new BitviseDuplicateKeyException("The public key is already in use.", ex);
+
+                    if (message.Contains("import format"))
+                        throw new UnsupportedKeyFormat("The imported key file contains an unsupported format.", ex);
+
+                    throw;
+                }
+                _server.SaveServerSettings();
+            }
+            catch (COMException ex)
+            {
+                throw new BitviseSSHServerException(ex);
             }
             finally
             {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
 namespace CoreTechs.Bitvise
@@ -25,6 +26,12 @@ namespace CoreTechs.Bitvise
             StreamingContext context)
             : base(info, context)
         {
+        }
+
+        public BitviseSSHServerException(COMException comException)
+            : base("See the inner exception for more information", comException)
+        {
+
         }
     }
 }
