@@ -37,9 +37,18 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Debug\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <OutputPath>bin\Release\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,12 +63,13 @@
     <Compile Include="Extensions.cs" />
     <Compile Include="JetBrains.Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicKeyInfo.cs" />
     <Compile Include="UnsupportedKeyFormat.cs" />
     <Compile Include="VirtAccount.cs" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="BssCfg554Lib">
-      <Guid>{F554774C-A993-43D0-B79A-6775E579E389}</Guid>
+    <COMReference Include="BssCfg601Lib">
+      <Guid>{B214AE1B-5145-4806-AF18-6D1810B4D8CC}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>

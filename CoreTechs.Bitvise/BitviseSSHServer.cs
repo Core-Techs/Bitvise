@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using BssCfg554Lib;
+using BssCfg601Lib;
 using JetBrains.Annotations;
 
 namespace CoreTechs.Bitvise
 {
     public class BitviseSSHServer
     {
-        private readonly BssCfg554 _server = new BssCfg554();
+        private readonly BssCfg601 _server = new BssCfg601();
 
         public TimeSpan? SettingsLockTimeout { get; set; }
 
@@ -22,11 +22,22 @@ namespace CoreTechs.Bitvise
 
         public IEnumerable<string> GetVirtAccountIds(string query = null)
         {
+            _server.LoadServerSettings();
             var hasPredicate = !string.IsNullOrWhiteSpace(query);
 
-            return _server
-                .Query(hasPredicate ? "access.virtAccounts.({0})" : "access.virtAccounts.All", query)
-                .Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            try
+            {
+                var rawResult = hasPredicate ? _server.Query("access.virtAccounts.({0})", query) : _server.Query("access.virtAccounts.All");
+                var results = rawResult.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                return results;
+            }
+            catch (COMException ex)
+            {
+                if (ex.Message.ToLowerInvariant().Contains("no match found"))
+                    return new string[0];
+
+                throw;
+            }
         }
 
         public IEnumerable<VirtAccount> GetVirtAccounts(string query = null)
