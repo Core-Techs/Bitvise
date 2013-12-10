@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
-using BssCfg601Lib;
+using BssCfg603Lib;
 using JetBrains.Annotations;
 
 namespace CoreTechs.Bitvise
@@ -13,7 +13,7 @@ namespace CoreTechs.Bitvise
         /// Like the QueryValue method, but with string format arguments.
         /// </summary>
         [StringFormatMethod("query")]
-        public static string Query([NotNull] this BssCfg601 server, [NotNull] string query, params object[] args)
+        public static string Query([NotNull] this BssCfg603 server, [NotNull] string query, params object[] args)
         {
             if (server == null) throw new ArgumentNullException("server");
             if (query == null) throw new ArgumentNullException("query");
@@ -27,7 +27,7 @@ namespace CoreTechs.Bitvise
         /// Like the ProcessInstruction method, but with string format arguments.
         /// </summary>
         [StringFormatMethod("command")]
-        public static void Command([NotNull] this BssCfg601 server, [NotNull] string command, params object[] args)
+        public static void Command([NotNull] this BssCfg603 server, [NotNull] string command, params object[] args)
         {
             if (server == null) throw new ArgumentNullException("server");
             if (command == null) throw new ArgumentNullException("command");
@@ -39,7 +39,7 @@ namespace CoreTechs.Bitvise
         /// <summary>
         /// Adds retry/timeout ability to the LockServerSettings method.
         /// </summary>
-        public static void LockServerSettings([NotNull] this BssCfg601 server, TimeSpan? timeout)
+        public static void LockServerSettings([NotNull] this BssCfg603 server, TimeSpan? timeout)
         {
             if (server == null) throw new ArgumentNullException("server");
             var sw = Stopwatch.StartNew();

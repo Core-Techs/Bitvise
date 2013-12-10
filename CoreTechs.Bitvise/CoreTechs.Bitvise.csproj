@@ -68,8 +68,8 @@
     <Compile Include="VirtAccount.cs" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="BssCfg601Lib">
-      <Guid>{B214AE1B-5145-4806-AF18-6D1810B4D8CC}</Guid>
+    <COMReference Include="BssCfg603Lib">
+      <Guid>{C1E49FCC-0248-493A-A593-7C6A7925BA42}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
