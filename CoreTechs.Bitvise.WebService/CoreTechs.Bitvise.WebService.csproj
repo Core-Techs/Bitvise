@@ -32,8 +32,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CoreTechs.Logging">
+      <HintPath>..\packages\CoreTechs.Logging.2.3.0\lib\net40-client\CoreTechs.Logging.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +45,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitviseService.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BitviseService.Designer.cs">
+      <DependentUpon>BitviseService.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Infrastructure\Attempt.cs" />
+    <Compile Include="Infrastructure\ServiceRunner.cs" />
+    <Compile Include="Infrastructure\SingleGlobalInstance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
