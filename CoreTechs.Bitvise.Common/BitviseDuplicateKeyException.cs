@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace CoreTechs.Bitvise
+namespace CoreTechs.Bitvise.Common
 {
     [Serializable]
     public class BitviseDuplicateKeyException : BitviseSSHServerException

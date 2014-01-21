@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using System.Linq;
+using System.Text.RegularExpressions;
 
-namespace CoreTechs.Bitvise
+namespace CoreTechs.Bitvise.Common
 {
     public class PublicKeyInfo
     {
@@ -10,7 +10,6 @@ namespace CoreTechs.Bitvise
         protected int Size { get; set; }
         protected string Comment { get; set; }
         protected string MD5 { get; set; }
-
 
         /// <summary>
         ///  Regular expression built for C# on: Wed, Feb 6, 2013, 11:42:37 AM

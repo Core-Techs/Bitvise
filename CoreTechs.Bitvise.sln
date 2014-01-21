@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTechs.Bitvise", "CoreTe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTechs.Bitvise.WebService", "CoreTechs.Bitvise.WebService\CoreTechs.Bitvise.WebService.csproj", "{E523CF8D-30C4-475F-B928-D02E0357F003}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreTechs.Bitvise.Common", "CoreTechs.Bitvise.Common\CoreTechs.Bitvise.Common.csproj", "{D77C87C7-3009-4B5E-952F-6E3DC03EF536}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,12 @@ Global
 		{E523CF8D-30C4-475F-B928-D02E0357F003}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E523CF8D-30C4-475F-B928-D02E0357F003}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E523CF8D-30C4-475F-B928-D02E0357F003}.Release|x86.ActiveCfg = Release|Any CPU
+		{D77C87C7-3009-4B5E-952F-6E3DC03EF536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D77C87C7-3009-4B5E-952F-6E3DC03EF536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D77C87C7-3009-4B5E-952F-6E3DC03EF536}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D77C87C7-3009-4B5E-952F-6E3DC03EF536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D77C87C7-3009-4B5E-952F-6E3DC03EF536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D77C87C7-3009-4B5E-952F-6E3DC03EF536}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

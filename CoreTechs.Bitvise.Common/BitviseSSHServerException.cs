@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Runtime.Serialization;
 
-namespace CoreTechs.Bitvise
+namespace CoreTechs.Bitvise.Common
 {
     [Serializable]
     public class BitviseSSHServerException : Exception

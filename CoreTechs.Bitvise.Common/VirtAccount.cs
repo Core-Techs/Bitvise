@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
-using System.Linq;
 
-namespace CoreTechs.Bitvise
+namespace CoreTechs.Bitvise.Common
 {
     public class VirtAccount
     {

@@ -12,6 +12,8 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
             get { return GetSettingOrDefault("http://localhost:8085"); }
         }
 
+        public static string SFTPRootPath { get { return GetRequiredSetting(); } }
+
         public static string GetRequiredSetting([CallerMemberName]string name = null)
         {
             var setting = ConfigurationManager.AppSettings[name];

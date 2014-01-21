@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using BssCfg603Lib;
+using CoreTechs.Bitvise.Common;
 using JetBrains.Annotations;
+using BssCfg = BssCfg603Lib.BssCfg603;
 
 namespace CoreTechs.Bitvise
 {
     public class BitviseSSHServer
     {
-        private readonly BssCfg603 _server = new BssCfg603();
+        private readonly BssCfg _server = new BssCfg();
 
         public TimeSpan? SettingsLockTimeout { get; set; }
 
@@ -115,7 +116,7 @@ namespace CoreTechs.Bitvise
                         throw new BitviseDuplicateKeyException("The public key is already in use.", ex);
 
                     if (message.Contains("import format"))
-                        throw new UnsupportedKeyFormat("The imported key file contains an unsupported format.", ex);
+                        throw new UnsupportedKeyFormatException("The imported key file contains an unsupported format.", ex);
 
                     throw;
                 }

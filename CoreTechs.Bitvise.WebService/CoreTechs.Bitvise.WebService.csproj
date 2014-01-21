@@ -73,6 +73,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitviseController.cs" />
     <Compile Include="BitviseService.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -90,6 +91,16 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CoreTechs.Bitvise.Common\CoreTechs.Bitvise.Common.csproj">
+      <Project>{D77C87C7-3009-4B5E-952F-6E3DC03EF536}</Project>
+      <Name>CoreTechs.Bitvise.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CoreTechs.Bitvise\CoreTechs.Bitvise.csproj">
+      <Project>{B103BAE3-7E4E-4332-9EFE-F5281220F9A1}</Project>
+      <Name>CoreTechs.Bitvise</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
