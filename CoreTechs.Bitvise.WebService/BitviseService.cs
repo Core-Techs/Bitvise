@@ -11,12 +11,12 @@ namespace CoreTechs.Bitvise.WebService
 
         protected override void OnStart(string[] args)
         {
-            // TODO: Add code here to start your service.
+            // start web server
         }
 
         protected override void OnStop()
         {
-            // TODO: Add code here to perform any tear-down necessary to stop your service.
+            // stop web server
         }
     }
 }

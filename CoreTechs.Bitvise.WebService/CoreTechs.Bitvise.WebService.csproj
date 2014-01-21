@@ -52,7 +52,7 @@
       <DependentUpon>BitviseService.cs</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Attempt.cs" />
-    <Compile Include="Infrastructure\ServiceRunner.cs" />
+    <Compile Include="Infrastructure\Extensions.cs" />
     <Compile Include="Infrastructure\SingleGlobalInstance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

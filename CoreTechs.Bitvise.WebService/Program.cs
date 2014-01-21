@@ -1,10 +1,9 @@
-﻿using CoreTechs.Bitvise.WebService;
+﻿using System;
+using System.ServiceProcess;
 using CoreTechs.Bitvise.WebService.Infrastructure;
 using CoreTechs.Logging;
-using System;
-using System.ServiceProcess;
 
-namespace AFS.BatchService
+namespace CoreTechs.Bitvise.WebService
 {
     static class Program
     {
@@ -30,10 +29,21 @@ namespace AFS.BatchService
 
             using (singleGlobalInstance)
             {
-
                 var svc = new BitviseService();
-                var svcRunner = new ServiceRunner(args, svc);
-                svcRunner.Start();
+
+                if (Environment.UserInteractive)
+                {
+                    svc.Start(args);
+                    Console.WriteLine("Press Enter to stop the service...");
+                    Console.ReadLine();
+                    svc.Stop();
+                    Console.WriteLine("The service is stopped. Press Enter to terminate...");
+                    Console.ReadLine();
+                }
+                else
+                {
+                    ServiceBase.Run(svc);
+                }
 
                 // wait for any straggling async log entries
                 LogManager.Global.Dispose();
