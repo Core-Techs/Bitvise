@@ -1,9 +1,16 @@
-﻿using System.ServiceProcess;
+﻿using System;
+using System.ServiceProcess;
+using CoreTechs.Bitvise.WebService.Infrastructure;
+using CoreTechs.Logging;
+using Microsoft.Owin.Hosting;
 
 namespace CoreTechs.Bitvise.WebService
 {
     partial class BitviseService : ServiceBase
     {
+        private static readonly Logger Log = LogManager.Global.CreateLogger();
+        private IDisposable _httpServer;
+
         public BitviseService()
         {
             InitializeComponent();
@@ -11,12 +18,13 @@ namespace CoreTechs.Bitvise.WebService
 
         protected override void OnStart(string[] args)
         {
-            // start web server
+            _httpServer = WebApp.Start<WebApiStartup>(AppSettings.ServiceUrl);
+            Log.Data("URL",AppSettings.ServiceUrl).Info("Started HTTP server.");
         }
 
         protected override void OnStop()
         {
-            // stop web server
+            _httpServer.Dispose();
         }
     }
 }

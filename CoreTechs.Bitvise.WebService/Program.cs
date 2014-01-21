@@ -19,11 +19,9 @@ namespace CoreTechs.Bitvise.WebService
             var singleGlobalInstance = Attempt.Get(() => new SingleGlobalInstance()).Value;
             if (singleGlobalInstance == null)
             {
-                if (Environment.UserInteractive)
-                {
-                    Console.WriteLine("Another instance of the application is running. Press any key to exit.");
-                    Console.ReadKey();
-                }
+                if (!Environment.UserInteractive) return;
+                Console.WriteLine("Another instance of the application is running. Press any key to exit.");
+                Console.ReadKey();
                 return;
             }
 
