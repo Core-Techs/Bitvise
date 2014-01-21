@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ServiceProcess;
+using CoreTechs.Bitvise.Common;
 using CoreTechs.Bitvise.WebService.Infrastructure;
 using CoreTechs.Logging;
 

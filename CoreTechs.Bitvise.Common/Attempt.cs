@@ -6,13 +6,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CoreTechs.Bitvise.WebService.Infrastructure
+namespace CoreTechs.Bitvise.Common
 {
 
     /// <summary>
     /// Utility and extension methods for convenient and easy to read error handling.
     /// </summary>
-    public class Attempt
+    internal class Attempt
     {
         /// <summary>
         /// Invokes the action, suppressing any thrown exception.
@@ -125,8 +125,7 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
             }
         }
     }
-
-    public class Attempt<T> : Attempt
+    internal class Attempt<T> : Attempt
     {
         /// <summary>
         /// The value that was created by the factory.
@@ -139,8 +138,7 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
             Value = value;
         }
     }
-
-    public class Attempts<T> : IEnumerable<T> where T : Attempt
+    internal class Attempts<T> : IEnumerable<T> where T : Attempt
     {
         private readonly LinkedList<T> _attempts = new LinkedList<T>();
 
@@ -219,8 +217,7 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
             return new RepeatedFailureException<T>(message, this);
         }
     }
-
-    public static class AttemptExtensions
+    internal static class AttemptExtensions
     {
         /// <summary>
         /// Delays iteration when the predicate is satisfied.
@@ -477,9 +474,7 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
             return Attempt.Repeatedly.Do(action).UsingStrategy(retryStrategy, cancellationToken);
         }
     }
-
-
-    public interface IRetryStrategy
+    internal interface IRetryStrategy
     {
         /// <summary>
         /// The delay between attempts.
@@ -511,8 +506,7 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
         /// </summary>
         Func<TimeSpan, TimeSpan> FailureDelayAdjustment { get; set; }
     }
-
-    public class RetryStrategy : IRetryStrategy
+    internal class RetryStrategy : IRetryStrategy
     {
         /// <summary>
         /// The delay between attempts.
@@ -544,14 +538,12 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
         /// </summary>
         public Func<TimeSpan, TimeSpan> FailureDelayAdjustment { get; set; }
     }
-
-    public abstract class RepeatedFailureException : AggregateException
+    internal abstract class RepeatedFailureException : AggregateException
     {
         protected RepeatedFailureException(string message, IEnumerable<Exception> exceptions)
             : base(message, exceptions) { }
     }
-
-    public sealed class RepeatedFailureException<T> : RepeatedFailureException where T : Attempt
+    internal sealed class RepeatedFailureException<T> : RepeatedFailureException where T : Attempt
     {
         public Attempts<T> Attempts { get; set; }
 

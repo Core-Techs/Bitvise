@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web.Http;
 using CoreTechs.Bitvise.Common;
 using CoreTechs.Bitvise.WebService.Infrastructure;
+using CoreTechs.Bitvise.WebService.Validation;
 using JetBrains.Annotations;
 
 namespace CoreTechs.Bitvise.WebService
@@ -20,18 +21,21 @@ namespace CoreTechs.Bitvise.WebService
         }
 
         [Route("virtAccount/{username}")]
-        public VirtAccount GetVirtAccount(BitviseVirtualAccounts request)
+        public VirtAccount GetVirtAccount(string username)
         {
-            return _server.GetVirtAccounts(string.Format("virtAccount eqi \"{0}\"", request.Username)).SingleOrDefault();
+            return _server.GetVirtAccounts(string.Format("virtAccount eqi \"{0}\"", username)).SingleOrDefault();
         }
 
         [Route("virtAccount")]
-        public VirtAccount PostVirtAccount(BitviseVirtualAccounts request)
+        public IHttpActionResult PostVirtAccount(BitviseVirtualAccount request)
         {
-            return _server.CreateOrUpdateVirtAccount(request.Username, request.NewPassword, request.Group);
+            if(!this.Validate<BitviseVirtualAccountValidator>(request).IsValid)
+                return BadRequest(ModelState);
+
+            return Ok(_server.CreateOrUpdateVirtAccount(request.Username, request.NewPassword, request.Group));
         }
 
-        [Route("~/sftp/directory/{relativePath}")]
+        [Route("~/sftp/directory/{*relativePath}")]
         public void PutSFTPDirectory(string relativePath)
         {
             var dir = Path.Combine(AppSettings.SFTPRootPath, relativePath);

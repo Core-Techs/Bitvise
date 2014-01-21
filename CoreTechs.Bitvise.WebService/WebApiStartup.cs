@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using CoreTechs.Bitvise.WebService.Infrastructure;
 using Owin;
 
 namespace CoreTechs.Bitvise.WebService
@@ -19,7 +20,14 @@ namespace CoreTechs.Bitvise.WebService
                 defaults: new { id = RouteParameter.Optional }
             );
 
+
+            config.DependencyResolver = new DependencyResolver();
+
+            
+
             appBuilder.UseWebApi(config);
+
+            
         }
     }
 }
