@@ -8,11 +8,17 @@ namespace CoreTechs.Bitvise.WebService
 {
     static class Program
     {
-        private static readonly Logger Log = SetupLogging().CreateLogger();
+        private static readonly Logger Log = SetupLogging();
 
-        private static LogManager SetupLogging()
+        private static Logger SetupLogging()
         {
-            return LogManager.Global = LogManager.Configure("logging");
+            var lm = LogManager.Global = LogManager.Configure("logging");
+            var log = lm.CreateLogger();
+
+            lm.UnhandledLoggingException +=
+                (sender, args) => log.Exception(args.Exception).Error("Unhandled Logging Exception");
+
+            return log;
         }
 
         private static void Main(string[] args)

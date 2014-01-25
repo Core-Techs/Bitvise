@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using CoreTechs.Bitvise.WebService.Infrastructure;
+using CoreTechs.Logging;
 using Owin;
 
 namespace CoreTechs.Bitvise.WebService
@@ -20,10 +21,8 @@ namespace CoreTechs.Bitvise.WebService
                 defaults: new { id = RouteParameter.Optional }
             );
 
-
+            appBuilder.Use<RequestLogger>(LogManager.Global);
             config.DependencyResolver = new DependencyResolver();
-
-            
 
             appBuilder.UseWebApi(config);
 

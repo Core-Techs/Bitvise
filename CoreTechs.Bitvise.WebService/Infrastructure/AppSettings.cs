@@ -9,7 +9,7 @@ namespace CoreTechs.Bitvise.WebService.Infrastructure
     {
         public static string ServiceUrl
         {
-            get { return GetSettingOrDefault("http://localhost:8085"); }
+            get { return GetSettingOrDefault("http://localhost:8086"); }
         }
 
         public static string SFTPRootPath { get { return GetRequiredSetting(); } }

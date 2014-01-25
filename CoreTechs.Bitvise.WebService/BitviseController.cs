@@ -20,6 +20,13 @@ namespace CoreTechs.Bitvise.WebService
             _server = server;
         }
 
+        [Route("virtAccountIds")]
+        public string[] GetVirtualAccountIds(string query)
+        {
+            var ids = _server.GetVirtAccountIds(query).ToArray();
+            return ids;
+        }
+
         [Route("virtAccount/{username}")]
         public VirtAccount GetVirtAccount(string username)
         {

@@ -32,8 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="CoreTechs.Logging">
-      <HintPath>..\packages\CoreTechs.Logging.2.3.0\lib\net40-client\CoreTechs.Logging.dll</HintPath>
+    <Reference Include="CoreTechs.Logging, Version=2.3.1.27832, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CoreTechs.Logging.2.3.1\lib\net40-client\CoreTechs.Logging.dll</HintPath>
     </Reference>
     <Reference Include="FluentValidation">
       <HintPath>..\packages\FluentValidation.5.0.0.1\lib\Net40\FluentValidation.dll</HintPath>
@@ -86,6 +87,7 @@
     <Compile Include="Infrastructure\DependencyResolver.cs" />
     <Compile Include="Infrastructure\AppSettings.cs" />
     <Compile Include="Infrastructure\Extensions.cs" />
+    <Compile Include="Infrastructure\RequestLogger.cs" />
     <Compile Include="Infrastructure\SingleGlobalInstance.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
