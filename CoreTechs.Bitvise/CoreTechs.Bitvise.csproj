@@ -66,8 +66,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="BssCfg603Lib">
-      <Guid>{C1E49FCC-0248-493A-A593-7C6A7925BA42}</Guid>
+    <ProjectReference Include="..\CoreTechs.Bitvise.Common\CoreTechs.Bitvise.Common.csproj">
+      <Project>{D77C87C7-3009-4B5E-952F-6E3DC03EF536}</Project>
+      <Name>CoreTechs.Bitvise.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="BssCfg604Lib">
+      <Guid>{15411988-363F-4E03-B621-DB31CACEF4AB}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
@@ -75,12 +81,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CoreTechs.Bitvise.Common\CoreTechs.Bitvise.Common.csproj">
-      <Project>{D77C87C7-3009-4B5E-952F-6E3DC03EF536}</Project>
-      <Name>CoreTechs.Bitvise.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
