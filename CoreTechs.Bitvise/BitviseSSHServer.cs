@@ -5,13 +5,13 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using CoreTechs.Bitvise.Common;
 using JetBrains.Annotations;
-using BssCfg604Lib;
+using BssCfg631Lib;
 
 namespace CoreTechs.Bitvise
 {
     public class BitviseSSHServer
     {
-        private readonly BssCfg604 _server = new BssCfg604();
+        private readonly BssCfg631 _server = new BssCfg631();
 
         public TimeSpan? SettingsLockTimeout { get; set; }
 
