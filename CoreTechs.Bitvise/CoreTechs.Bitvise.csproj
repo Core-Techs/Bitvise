@@ -72,8 +72,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <COMReference Include="BssCfg631Lib">
-      <Guid>{5B93290F-9697-43F3-9AE9-E7B40B94E7EF}</Guid>
+    <COMReference Include="BssCfg641Lib">
+      <Guid>{C6A666EE-9BD4-4919-AC0C-036660AD8D1F}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
