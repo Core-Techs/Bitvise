@@ -45,7 +45,7 @@ namespace CoreTechs.Bitvise
         {
             return from id in GetVirtAccountIds(query)
                    let accountData = _server.Query("{0}.*", id)
-                   let keyData = _server.Query("{0}.keys.Info", id)
+                   let keyData = _server.Query("{0}.auth.keys.Info", id)
                    select new VirtAccount(id, accountData, keyData);
         }
 

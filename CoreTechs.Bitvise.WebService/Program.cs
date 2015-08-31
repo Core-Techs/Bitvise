@@ -23,6 +23,8 @@ namespace CoreTechs.Bitvise.WebService
 
         private static void Main(string[] args)
         {
+            Log.Info("Starting Up");
+
             var singleGlobalInstance = Attempt.Get(() => new SingleGlobalInstance()).Value;
             if (singleGlobalInstance == null)
             {
